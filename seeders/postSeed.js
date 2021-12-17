@@ -1,3 +1,4 @@
+// creating user posts content
 const seed = [
   {
     title: 'John is Cool',

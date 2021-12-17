@@ -1,3 +1,4 @@
+// creating user properties
 const seed = [
   {
     username: 'johndoe',
