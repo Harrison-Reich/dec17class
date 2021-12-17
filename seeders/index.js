@@ -1,11 +1,12 @@
-// bring in user and post models
 const { User, Post } = require('../models')
 
-// async function for seeding data
 async function seeder() {
   console.log('----Seeding Data----')
 
-  await User.bulkCreate(require('./userSeed.js'))
+  await User.register(new User({ username: 'johndoe', email: 'johndoe@gmail.com' }), 'password1234')
+  await User.register(new User({ username: 'janedoe', email: 'janedoe@gmail.com' }), 'password4321')
+  await User.register(new User({ username: 'jackdoe', email: 'jackdoe@gmail.com' }), 'rootroot')
+
   await Post.bulkCreate(require('./postSeed.js'))
 
   console.log('----Data Seeded----')

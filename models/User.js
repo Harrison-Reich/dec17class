@@ -1,9 +1,20 @@
+const pls = require('passport-local-sequelize')
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
 
-// creating user
-class User extends Model { }
-User.init({
+// class User extends Model { }
+// User.init({
+//   username: {
+//     type: DataTypes.STRING,
+//     allowNull: false
+//   },
+//   email: {
+//     type: DataTypes.STRING,
+//     allowNull: false
+//   }
+// }, { sequelize, modelName: 'user' })
+
+const User = pls.defineUser(sequelize, {
   username: {
     type: DataTypes.STRING,
     allowNull: false
@@ -12,6 +23,6 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   }
-}, { sequelize, modelName: 'user' })
+})
 
 module.exports = User
