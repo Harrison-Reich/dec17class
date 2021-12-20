@@ -33,6 +33,7 @@
     </div>
   </nav>
 
+<!-- hero banner -->
   <div class="container">
     <div class="row bg-light p-5 rounded-lg mb-3 mt-3">
       <h1 class="display-4">Not Facebook</h1>
@@ -71,7 +72,7 @@
         }
       }
 
-// render post function
+// render post functionctionality
       async function renderPost({ title, body }) {
         const postElem = document.createElement('div')
         postElem.innerHTML = `
@@ -84,18 +85,21 @@
         document.getElementById('posts').prepend(postElem)
       }
 
+// render post fucntion
       async function renderPosts() {
         const { posts } = await getProfile()
 
         posts.forEach(post => renderPost(post))
       }
 
+// render username function
       async function renderUsername() {
         const username = localStorage.getItem('username')
 
         document.getElementById('username').textContent = username
       }
 
+// logout user function
       document.getElementById('logout').addEventListener('click', logoutUser)
 
 // calling post and username functions

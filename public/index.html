@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <!-- nav bar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Not Facebook</a>
@@ -31,6 +32,8 @@
       </div>
     </div>
   </nav>
+
+<!-- hero banner -->
   <div class="container">
     <div class="row bg-light p-5 rounded-lg mb-3 mt-3">
       <h1 class="display-4">Not Facebook</h1>
@@ -60,12 +63,14 @@
     crossorigin="anonymous"></script>
   <script>
 
+// logout user function
     async function logoutUser() {
       localStorage.removeItem('username')
       localStorage.removeItem('token')
       location = '/login.html'
     }
 
+// get post function
     async function getPosts() {
       try {
         const { data: posts } = await axios.get('/api/posts', {
@@ -80,6 +85,7 @@
       }
     }
 
+// create post function
     async function createPost(data) {
       const { data: post } = await axios.post('/api/posts', data, {
         headers: {
@@ -90,6 +96,7 @@
       return post
     }
 
+// render post function
     async function renderPost({ title, body, User: { username } }) {
       const postElem = document.createElement('div')
       postElem.innerHTML = `
@@ -103,18 +110,21 @@
       document.getElementById('posts').prepend(postElem)
     }
 
+//render post function
     async function renderPosts() {
       const posts = await getPosts()
 
       posts.forEach(post => renderPost(post))
     }
 
+//render username function
     async function renderUsername() {
       const username = localStorage.getItem('username')
 
       document.getElementById('username').textContent = username
     }
 
+// button click functionality
     document.getElementById('post').addEventListener('click', async function (event) {
       event.preventDefault()
 
@@ -128,6 +138,7 @@
 
     document.getElementById('logout').addEventListener('click', logoutUser)
 
+// calling render post and username function
     renderPosts()
     renderUsername()
   </script>
