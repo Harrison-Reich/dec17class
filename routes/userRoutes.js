@@ -3,7 +3,6 @@ const { User, Post } = require('../models')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 
-// registering a new user
 router.post('/users/register', (req, res) => {
   User.register(new User({ username: req.body.username, email: req.body.email }), req.body.password, err => {
     if (err) { console.log(err) }
@@ -11,12 +10,14 @@ router.post('/users/register', (req, res) => {
   })
 })
 
-// login as new user
 router.post('/users/login', (req, res) => {
   User.authenticate()(req.body.username, req.body.password, (err, user) => {
     if (err) { console.log(err) }
 
-    res.json(user ? jwt.sign({ id: user.id }, process.env.SECRET) : null)
+    res.json(user ? {
+      username: user.username,
+      token: jwt.sign({ id: user.id }, process.env.SECRET)
+    } : null)
   })
 })
 

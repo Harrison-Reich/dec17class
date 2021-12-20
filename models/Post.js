@@ -1,4 +1,3 @@
-// creating post model and properties
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')
 

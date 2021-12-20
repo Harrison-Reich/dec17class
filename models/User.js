@@ -1,4 +1,3 @@
-// creating user model and properties
 const pls = require('passport-local-sequelize')
 const { Model, DataTypes } = require('sequelize')
 const sequelize = require('../db')

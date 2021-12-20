@@ -1,4 +1,3 @@
-// creating post seed data
 const seed = [
   {
     title: 'John is Cool',
